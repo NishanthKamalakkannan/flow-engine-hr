@@ -40,6 +40,18 @@ The engine utilizes a **Depth-First Search (DFS)** algorithm for cycle detection
 
 ---
 
+## 🚀 Live Demo & Deployment
+
+This project is optimized for **Vercel** for a zero-config, professional hosting experience.
+
+### How to Deploy:
+1.  Go to [Vercel.com](https://vercel.com) and sign in with GitHub.
+2.  Click **"Add New"** -> **"Project"**.
+3.  Import the `flow-engine-hr` repository.
+4.  Click **"Deploy"**. (Vercel will automatically detect Vite and build the project).
+
+---
+
 ## Quick Start
 ```bash
 # Install dependencies

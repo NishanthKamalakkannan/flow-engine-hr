@@ -1,0 +1,59 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  box-sizing: border-box;
+}
+
+@layer utilities {
+  @keyframes pulse-subtle {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.85; transform: scale(0.99); }
+  }
+  .animate-pulse-subtle {
+    animation: pulse-subtle 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+}
+
+body {
+  margin: 0;
+  background-color: #030712; /* Slate-950 */
+  color: #F8FAFC; /* Slate-50 */
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* React Flow customizations */
+.react-flow__handle {
+  transition: all 0.2s ease;
+  box-shadow: 0 0 8px rgba(99, 102, 241, 0.3); /* Indigo shadow */
+}
+
+.react-flow__handle:hover {
+  box-shadow: 0 0 12px rgba(99, 102, 241, 0.6);
+}
+
+.react-flow__edge-path {
+  transition: stroke-width 0.3s ease;
+}
+
+.react-flow__background {
+  background-color: #030712;
+}
+
+/* Scrollbar styling for professional feel */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: #1E293B;
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #334155;
+}

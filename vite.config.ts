@@ -4,6 +4,7 @@ import react from '@vitejs/plugin-react'
 
 // https://vite.dev/config/
 export default defineConfig({
+  base: "/flow-engine-hr/",
   plugins: [react()],
   test: {
     globals: true,
@@ -11,5 +12,3 @@ export default defineConfig({
     setupFiles: './src/test/setup.ts',
   },
 } as any)
-
-

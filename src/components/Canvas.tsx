@@ -97,9 +97,9 @@ function Flow() {
         fitView
         deleteKeyCode="Delete"
       >
-        <Background variant={BackgroundVariant.Dots} gap={24} size={1} color="#0F3460" />
+        <Background variant={BackgroundVariant.Dots} gap={24} size={1} color="#312E81" />
         <Controls />
-        <MiniMap nodeColor="#F97316" maskColor="rgba(26,26,46,0.8)" />
+        <MiniMap nodeColor="#7C3AED" maskColor="rgba(8,12,20,0.9)" />
       </ReactFlow>
     </div>
   );

@@ -4,12 +4,12 @@ import { getAutoLayout } from "../../utils/autoLayout";
 import { WORKFLOW_TEMPLATES } from "../../utils/workflowTemplates";
 
 const NODE_TYPES = [
-  { type: "start", label: "Start", Icon: Play, color: "bg-emerald-500", desc: "Process entry" },
-  { type: "task", label: "Task", Icon: ClipboardList, color: "bg-blue-500", desc: "Manual action" },
-  { type: "approval", label: "Approval", Icon: ShieldCheck, color: "bg-amber-500", desc: "Decision gate" },
-  { type: "automated", label: "Automated", Icon: Zap, color: "bg-violet-500", desc: "System sync" },
-  { type: "webhook", label: "Webhook", Icon: Globe, color: "bg-pink-500", desc: "Live API call" },
-  { type: "end", label: "End", Icon: Flag, color: "bg-rose-500", desc: "Completion" },
+  { type: "start", label: "Start", Icon: Play, color: "bg-[#10B981]", desc: "Process entry" },
+  { type: "task", label: "Task", Icon: ClipboardList, color: "bg-[#3B82F6]", desc: "Manual action" },
+  { type: "approval", label: "Approval", Icon: ShieldCheck, color: "bg-[#F59E0B]", desc: "Decision gate" },
+  { type: "automated", label: "Automated", Icon: Zap, color: "bg-[#8B5CF6]", desc: "System sync" },
+  { type: "webhook", label: "Webhook", Icon: Globe, color: "bg-[#06B6D4]", desc: "Live API call" },
+  { type: "end", label: "End", Icon: Flag, color: "bg-[#EF4444]", desc: "Completion" },
 ];
 
 const TEMPLATE_ICONS: Record<string, any> = {
@@ -92,10 +92,10 @@ export default function Sidebar() {
   };
 
   return (
-    <div className="w-64 h-full bg-white border-r border-pink-200 flex flex-col p-4 gap-6 overflow-y-auto shadow-sm z-10">
+    <div className="w-64 h-full bg-[#0D1420] border-r border-[#1F2937] flex flex-col p-4 gap-6 overflow-y-auto shadow-2xl z-20">
       {/* Node Palette */}
       <div>
-        <p className="text-[11px] text-[#4A0E1C]/60 font-bold uppercase tracking-[0.15em] mb-4 pl-1">Designer Nodes</p>
+        <p className="text-[10px] text-[#6B7280] font-black uppercase tracking-[0.2em] mb-5 pl-1">Designer Nodes</p>
         <div className="grid grid-cols-1 gap-3">
           {NODE_TYPES.map((n) => (
             <div
@@ -103,14 +103,14 @@ export default function Sidebar() {
               draggable
               onDragStart={(e) => handleDragStart(e, n.type)}
               onClick={() => handleAddNode(n.type)}
-              className="flex items-center gap-3 p-3 rounded-xl border border-pink-100 bg-white cursor-grab hover:border-pink-400 hover:bg-pink-50/50 transition-all group active:scale-[0.98] shadow-sm hover:shadow-md"
+              className="flex items-center gap-4 p-3.5 rounded-xl border border-[#1F2937] bg-[#111827] cursor-grab hover:border-[#7C3AED] hover:shadow-[0_0_20px_rgba(124,58,237,0.15)] transition-all group active:scale-[0.98]"
             >
-              <div className={`w-9 h-9 rounded-lg flex items-center justify-center shadow-sm transition-transform group-hover:scale-110 ${n.color}`}>
-                <n.Icon size={16} className="text-white" />
+              <div className={`w-9 h-9 rounded-lg flex items-center justify-center shadow-lg transition-transform group-hover:scale-110 ${n.color}`}>
+                <n.Icon size={16} className="text-[#F9FAFB]" />
               </div>
               <div className="overflow-hidden">
-                <p className="text-[#4A0E1C] text-xs font-bold leading-tight">{n.label}</p>
-                <p className="text-pink-600/40 text-[10px] truncate leading-tight mt-0.5">{n.desc}</p>
+                <p className="text-[#F9FAFB] text-xs font-black tracking-tight leading-tight">{n.label}</p>
+                <p className="text-[#6B7280] text-[10px] truncate leading-tight mt-1.5 font-medium">{n.desc}</p>
               </div>
             </div>
           ))}
@@ -119,7 +119,7 @@ export default function Sidebar() {
 
       {/* Templates */}
       <div>
-        <p className="text-[11px] text-[#4A0E1C]/60 font-bold uppercase tracking-[0.15em] mb-4 pl-1">Presets</p>
+        <p className="text-[10px] text-[#6B7280] font-black uppercase tracking-[0.2em] mb-5 pl-1">Mission Presets</p>
         <div className="flex flex-col gap-3">
           {WORKFLOW_TEMPLATES.map((tpl, i) => {
             const TplIcon = TEMPLATE_ICONS[tpl.icon] || Play;
@@ -127,14 +127,14 @@ export default function Sidebar() {
               <button
                 key={tpl.name}
                 onClick={() => handleLoadTemplate(i)}
-                className="flex items-center gap-3 p-3.5 rounded-xl border border-pink-100 bg-white hover:border-pink-400 hover:bg-pink-50/50 transition-all text-left w-full group active:scale-[0.98] shadow-sm hover:shadow-md"
+                className="flex items-center gap-4 p-4 rounded-xl border border-[#1F2937] bg-[#111827] hover:border-[#7C3AED] hover:shadow-[0_0_20px_rgba(124,58,237,0.15)] transition-all text-left w-full group active:scale-[0.98]"
               >
-                <div className="w-8 h-8 rounded-lg flex items-center justify-center bg-pink-50 transition-transform group-hover:translate-x-0.5">
-                  <TplIcon size={15} className="text-[#FF4D6D]" />
+                <div className="w-9 h-9 rounded-lg flex items-center justify-center bg-[#0D1420] transition-transform group-hover:translate-x-1 border border-[#1F2937]">
+                  <TplIcon size={16} className="text-[#A855F7]" />
                 </div>
-                <div className="overflow-hidden">
-                  <p className="text-[#4A0E1C] text-xs font-black truncate leading-tight">{tpl.name}</p>
-                  <p className="text-pink-600/40 text-[10px] truncate mt-1 font-medium">{tpl.description}</p>
+                <div className="overflow-hidden space-y-1">
+                  <p className="text-[#F9FAFB] text-xs font-black truncate leading-tight">{tpl.name}</p>
+                  <p className="text-[#6B7280] text-[10px] truncate leading-tight font-medium">{tpl.description}</p>
                 </div>
               </button>
             );
@@ -143,56 +143,56 @@ export default function Sidebar() {
       </div>
 
       {/* Actions */}
-      <div className="mt-auto space-y-2.5 border-t border-pink-100 pt-6">
+      <div className="mt-auto space-y-3 border-t border-[#1F2937] pt-8 pb-4">
         <button
           onClick={handleAutoLayout}
-          className="w-full flex items-center justify-center gap-2 text-xs py-3 px-4 rounded-xl bg-white hover:bg-pink-50 text-[#4A0E1C] font-black transition-all border border-pink-300 active:scale-95 shadow-sm"
+          className="w-full flex items-center justify-center gap-3 text-[11px] py-3.5 px-4 rounded-xl bg-[#111827] hover:bg-[#1F2937] text-[#F9FAFB] font-black transition-all border border-[#1F2937] active:scale-95 shadow-lg uppercase tracking-widest"
         >
-          <Layout size={14} className="text-pink-400" /> Refine Layout
+          <Layout size={14} className="text-[#A855F7]" /> Refine Layout
         </button>
         
-        <div className="grid grid-cols-2 gap-2.5">
+        <div className="grid grid-cols-2 gap-3">
           <button
             onClick={handleExport}
-            className="flex flex-col items-center justify-center gap-1.5 p-3 rounded-xl bg-white border border-pink-200 hover:border-pink-400 hover:bg-pink-50 transition-all active:scale-95 group shadow-sm"
-            title="Export Workflow"
+            className="flex flex-col items-center justify-center gap-2 p-4 rounded-xl bg-[#111827] border border-[#1F2937] hover:border-[#7C3AED] hover:bg-[#1F2937] transition-all active:scale-95 group"
+            title="Export Mission"
           >
-            <Download size={16} className="text-pink-400 group-hover:text-pink-600 transition-colors" />
-            <span className="text-[10px] font-black text-pink-600/50 group-hover:text-pink-600 uppercase tracking-tighter">Export</span>
+            <Download size={18} className="text-[#6B7280] group-hover:text-[#A855F7] transition-colors" />
+            <span className="text-[9px] font-black text-[#6B7280] group-hover:text-[#F9FAFB] uppercase tracking-widest">Export</span>
           </button>
           
-          <label className="flex flex-col items-center justify-center gap-1.5 p-3 rounded-xl bg-white border border-pink-200 hover:border-pink-400 hover:bg-pink-50 transition-all cursor-pointer active:scale-95 group shadow-sm">
-            <Upload size={16} className="text-pink-400 group-hover:text-pink-600 transition-colors" />
-            <span className="text-[10px] font-black text-pink-600/50 group-hover:text-pink-600 uppercase tracking-tighter">Import</span>
+          <label className="flex flex-col items-center justify-center gap-2 p-4 rounded-xl bg-[#111827] border border-[#1F2937] hover:border-[#7C3AED] hover:bg-[#1F2937] transition-all cursor-pointer active:scale-95 group">
+            <Upload size={18} className="text-[#6B7280] group-hover:text-[#A855F7] transition-colors" />
+            <span className="text-[9px] font-black text-[#6B7280] group-hover:text-[#F9FAFB] uppercase tracking-widest">Import</span>
             <input type="file" accept=".json" onChange={handleImport} className="hidden" />
           </label>
         </div>
 
         <button
           onClick={clearWorkflow}
-          className="w-full flex items-center justify-center gap-2 text-[11px] py-3 px-4 rounded-xl bg-rose-50 hover:bg-rose-100 text-[#FF4D6D] font-black transition-all border border-rose-200 active:scale-95 tracking-wide shadow-sm uppercase"
+          className="w-full flex items-center justify-center gap-3 text-[11px] py-4 px-4 rounded-xl bg-red-950/20 hover:bg-red-950/40 text-red-500 font-black transition-all border border-red-900/40 active:scale-95 tracking-widest shadow-lg uppercase"
         >
-          <Trash2 size={13} /> Reset Engine
+          <Trash2 size={14} /> Abort Workflow
         </button>
       </div>
 
-      {/* Keyboard shortcuts */}
-      <div className="border-t border-pink-100 pt-6">
-        <div className="flex items-center justify-between mb-3 px-1">
-          <p className="text-[10px] text-[#4A0E1C]/40 font-bold uppercase tracking-widest">System Status</p>
-          <div className="flex items-center gap-1.5">
-             <div className="w-1.5 h-1.5 rounded-full bg-[#FF4D6D] animate-pulse" />
-             <span className="text-[10px] text-[#4A0E1C]/60 font-bold font-mono tracking-tighter">Standby</span>
+      {/* System Status HUD */}
+      <div className="border-t border-[#1F2937] pt-8 pb-4">
+        <div className="flex items-center justify-between mb-4 px-1">
+          <p className="text-[10px] text-[#6B7280] font-black uppercase tracking-[0.2em]">Telemetry Status</p>
+          <div className="flex items-center gap-2">
+             <div className="w-1.5 h-1.5 rounded-full bg-[#10B981] animate-pulse shadow-[0_0_8px_rgba(16,185,129,0.8)]" />
+             <span className="text-[9px] text-[#10B981] font-black font-mono tracking-tighter uppercase">Nominal</span>
           </div>
         </div>
-        <div className="space-y-1.5 bg-pink-50/50 p-3 rounded-xl border border-pink-100">
-          <div className="flex justify-between items-center text-[10px] text-pink-600/60 uppercase font-black tracking-tight">
-            <span>Undo</span>
-            <kbd className="bg-white px-1.5 py-0.5 rounded text-pink-600/80 font-mono shadow-sm border border-pink-200">Ctrl+Z</kbd>
+        <div className="space-y-2 bg-[#080C14]/80 p-4 rounded-2xl border border-[#1F2937] shadow-inner">
+          <div className="flex justify-between items-center text-[9px] text-[#6B7280] uppercase font-black tracking-widest">
+            <span>Rollback</span>
+            <kbd className="bg-[#111827] px-2 py-1 rounded-lg text-[#A855F7] font-mono shadow-md border border-[#1F2937]">Ctrl+Z</kbd>
           </div>
-          <div className="flex justify-between items-center text-[10px] text-pink-600/60 uppercase font-black tracking-tight">
-            <span>Redo</span>
-            <kbd className="bg-white px-1.5 py-0.5 rounded text-pink-600/80 font-mono shadow-sm border border-pink-200">Ctrl+Y</kbd>
+          <div className="flex justify-between items-center text-[9px] text-[#6B7280] uppercase font-black tracking-widest">
+            <span>Commit</span>
+            <kbd className="bg-[#111827] px-2 py-1 rounded-lg text-[#A855F7] font-mono shadow-md border border-[#1F2937]">Ctrl+Y</kbd>
           </div>
         </div>
       </div>

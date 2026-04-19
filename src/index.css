@@ -18,32 +18,32 @@
 
 body {
   margin: 0;
-  background-color: #FFEBEE; /* Slightly deeper Rose White for better presence */
-  color: #4A0E1C; /* Deep Burgundy for professional contrast */
+  background-color: #080C14; /* Deepest Midnight Blue-Black */
+  color: #F9FAFB; /* Crisp White primary text */
   font-family: 'Inter', system-ui, -apple-system, sans-serif;
   -webkit-font-smoothing: antialiased;
 }
 
-/* React Flow customizations - Light Mode */
+/* React Flow customizations - Cosmic Mission Control */
 .react-flow__handle {
   transition: all 0.2s ease;
-  box-shadow: 0 0 8px rgba(255, 77, 109, 0.2); /* Soft Rose shadow */
+  box-shadow: 0 0 8px rgba(124, 58, 237, 0.3); /* Electric Purple glow */
 }
 
 .react-flow__handle:hover {
-  box-shadow: 0 0 12px rgba(255, 77, 109, 0.5);
+  box-shadow: 0 0 12px rgba(168, 85, 247, 0.6);
 }
 
 .react-flow__edge-path {
   transition: stroke-width 0.3s ease;
-  stroke: #FFCCD5; /* Soft pink edges */
+  stroke: #1F2937; /* Barely visible structure */
 }
 
 .react-flow__background {
-  background-color: #FFEBEE;
+  background-color: #080C14;
 }
 
-/* Scrollbar styling - Light Rose theme */
+/* Scrollbar styling - Deep Navy theme */
 ::-webkit-scrollbar {
   width: 6px;
   height: 6px;
@@ -52,9 +52,34 @@ body {
   background: transparent;
 }
 ::-webkit-scrollbar-thumb {
-  background: #FFCDD2;
+  background: #1F2937;
   border-radius: 10px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #FFB3C1;
+  background: #374151;
+}
+
+/* Canvas Selection Style */
+.react-flow__edge.selected .react-flow__edge-path {
+  stroke: #7C3AED;
+  stroke-width: 3;
+}
+
+.react-flow__controls {
+  background: #0D1420;
+  border: 1px solid #1F2937;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+}
+
+.react-flow__controls-button {
+  background: #0D1420 !important;
+  border-bottom: 1px solid #1F2937 !important;
+  color: #F9FAFB !important;
+  fill: #F9FAFB !important;
+}
+
+.react-flow__controls-button:hover {
+  background: #1F2937 !important;
 }

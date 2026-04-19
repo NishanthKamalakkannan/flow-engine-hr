@@ -8,31 +8,31 @@ export default function WebhookForm({ node }: { node: any }) {
   const d = node.data;
 
   return (
-    <div className="flex flex-col gap-4">
-      <Field label="Node Title">
+    <div className="flex flex-col gap-5">
+      <Field label="Protocol Alias">
         <Input 
           value={d.title} 
           onChange={(e) => updateNodeData(node.id, { title: e.target.value })} 
-          placeholder="e.g. Notify External CRM" 
+          placeholder="e.g. Notify External HUD" 
         />
       </Field>
 
-      <Field label="Webhook URL" required>
+      <Field label="Destination Endpoint" required>
         <Input 
           value={d.url} 
           onChange={(e) => updateNodeData(node.id, { url: e.target.value })} 
-          placeholder="https://httpbin.org/post" 
+          placeholder="https://comm-relay.nasa.gov/post" 
         />
-        <p className="text-[10px] text-pink-600/40 mt-1 font-bold uppercase tracking-tight">
-          CORS support required (e.g. httpbin.org)
+        <p className="text-[10px] text-[#6B7280] mt-2 font-black uppercase tracking-tight italic">
+          Direct CORS link required for live sync
         </p>
       </Field>
 
-      <Field label="HTTP Method">
+      <Field label="Transmission Protocol">
         <select
           value={d.method || "POST"}
           onChange={(e) => updateNodeData(node.id, { method: e.target.value })}
-          className="w-full bg-white border border-pink-100 rounded-xl px-4 py-2.5 text-[#4A0E1C] text-sm font-medium focus:outline-none focus:border-[#FF4D6D] focus:ring-4 focus:ring-pink-500/5 transition-all shadow-sm"
+          className="w-full bg-[#080C14] border border-[#1F2937] rounded-xl px-4 py-3 text-[#F9FAFB] text-sm font-semibold focus:outline-none focus:border-[#7C3AED] focus:ring-4 focus:ring-[#7C3AED]/5 transition-all shadow-inner"
         >
           <option value="GET">GET</option>
           <option value="POST">POST</option>
@@ -43,12 +43,12 @@ export default function WebhookForm({ node }: { node: any }) {
       </Field>
 
       {(d.method === "POST" || d.method === "PUT" || d.method === "PATCH") && (
-        <Field label="JSON Payload (Optional)">
+        <Field label="Telemetry Payload (JSON)">
           <Textarea
             value={d.payload}
             onChange={(e) => updateNodeData(node.id, { payload: e.target.value })}
-            placeholder='{ "key": "value" }'
-            className="min-h-[120px]"
+            placeholder='{ "status": "nominal" }'
+            className="min-h-[140px]"
           />
         </Field>
       )}

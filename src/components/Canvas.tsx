@@ -95,6 +95,7 @@ function Flow() {
         onDragOver={onDragOver}
         onDrop={onDrop}
         fitView
+        fitViewOptions={{ maxZoom: 1, padding: 0.5 }}
         deleteKeyCode="Delete"
       >
         <Background variant={BackgroundVariant.Dots} gap={24} size={1} color="#312E81" />

@@ -17,19 +17,57 @@ import AnimatedEdge from "./edges/AnimatedEdge";
 const edgeTypes = { animated: AnimatedEdge };
 
 const DEFAULT_DATA: Record<string, any> = {
-  start: { type: "start", title: "Start", metadata: [] },
-  task: { type: "task", title: "New Task", description: "", assignee: "", dueDate: "", customFields: [] },
-  approval: { type: "approval", title: "Approval", approverRole: "Manager", autoApproveThreshold: 0 },
-  automated: { type: "automated", title: "Automated Step", actionId: "", actionParams: {} },
-  end: { type: "end", endMessage: "Workflow Complete", summaryFlag: false },
+  start: {
+    type: "start",
+    title: "Start",
+    metadata: [],
+  },
+  task: {
+    type: "task",
+    title: "New Task",
+    description: "",
+    assignee: "",
+    dueDate: "",
+    customFields: [],
+  },
+  approval: {
+    type: "approval",
+    title: "Approval",
+    approverRole: "Manager",
+    autoApproveThreshold: 0,
+  },
+  automated: {
+    type: "automated",
+    title: "Automated Step",
+    actionId: "",
+    actionParams: {},
+  },
+  end: {
+    type: "end",
+    endMessage: "Workflow Complete",
+    summaryFlag: false,
+  },
 };
 
 function makeId() {
-  return "node-" + Date.now().toString(36) + "-" + Math.random().toString(36).slice(2, 6);
+  return (
+    "node-" +
+    Date.now().toString(36) +
+    "-" +
+    Math.random().toString(36).slice(2, 6)
+  );
 }
 
 function Flow() {
-  const { nodes, edges, setNodes, setEdges, setSelectedNodeId, addNode } = useWorkflowStore();
+  const {
+    nodes,
+    edges,
+    setNodes,
+    setEdges,
+    setSelectedNodeId,
+    addNode,
+  } = useWorkflowStore();
+
   const { screenToFlowPosition } = useReactFlow();
   const reactFlowWrapper = useRef<HTMLDivElement>(null);
 
@@ -48,16 +86,22 @@ function Flow() {
   const onDrop = useCallback(
     (e: React.DragEvent) => {
       e.preventDefault();
+
       const type = e.dataTransfer.getData("nodeType");
       if (!type) return;
 
-      const position = screenToFlowPosition({ x: e.clientX, y: e.clientY });
+      const position = screenToFlowPosition({
+        x: e.clientX,
+        y: e.clientY,
+      });
 
       addNode({
         id: makeId(),
         type: type as any,
         position,
-        data: { ...DEFAULT_DATA[type] },
+        data: {
+          ...DEFAULT_DATA[type],
+        },
       });
     },
     [screenToFlowPosition]
@@ -73,34 +117,81 @@ function Flow() {
         defaultEdgeOptions={{ type: "animated" }}
         onNodesChange={(changes: any) => {
           let updated = [...nodes];
+
           changes.forEach((change: any) => {
             if (change.type === "position" && change.position) {
-              const idx = updated.findIndex((n: any) => n.id === change.id);
-              if (idx !== -1) updated[idx] = { ...updated[idx], position: change.position };
+              const idx = updated.findIndex(
+                (n: any) => n.id === change.id
+              );
+
+              if (idx !== -1) {
+                updated[idx] = {
+                  ...updated[idx],
+                  position: change.position,
+                };
+              }
             }
-            if (change.type === "remove") updated = updated.filter((n: any) => n.id !== change.id);
+
+            if (change.type === "remove") {
+              updated = updated.filter(
+                (n: any) => n.id !== change.id
+              );
+            }
           });
+
           setNodes(updated);
         }}
         onEdgesChange={(changes: any) => {
           let updated = [...edges];
+
           changes.forEach((change: any) => {
-            if (change.type === "remove") updated = updated.filter((e: any) => e.id !== change.id);
+            if (change.type === "remove") {
+              updated = updated.filter(
+                (e: any) => e.id !== change.id
+              );
+            }
           });
+
           setEdges(updated);
         }}
         onConnect={onConnect}
-        onNodeClick={(_: any, node: any) => setSelectedNodeId(node.id)}
+        onNodeClick={(_: any, node: any) =>
+          setSelectedNodeId(node.id)
+        }
         onPaneClick={() => setSelectedNodeId(null)}
         onDragOver={onDragOver}
         onDrop={onDrop}
         fitView
-        fitViewOptions={{ maxZoom: 1, padding: 0.5 }}
+        fitViewOptions={{
+          maxZoom: 1,
+          padding: 0.5,
+        }}
         deleteKeyCode="Delete"
       >
-        <Background variant={BackgroundVariant.Dots} gap={24} size={1} color="#312E81" />
+        <Background
+          variant={BackgroundVariant.Dots}
+          gap={24}
+          size={1}
+          color="#312E81"
+        />
+
         <Controls />
-        <MiniMap nodeColor="#7C3AED" maskColor="rgba(8,12,20,0.9)" />
+
+        <MiniMap
+          nodeColor="#A855F7"
+          maskColor="rgba(0, 0, 0, 0.7)"
+          nodeStrokeWidth={3}
+          nodeStrokeColor="#7C3AED"
+          style={{
+            backgroundColor: "#0D1420",
+            border: "1px solid #1F2937",
+            borderRadius: "12px",
+            width: 150,
+            height: 100,
+          }}
+          zoomable
+          pannable
+        />
       </ReactFlow>
     </div>
   );

@@ -8,7 +8,7 @@ const NODE_TYPES = [
   { type: "task", label: "Task", Icon: ClipboardList, color: "bg-blue-500", desc: "Manual action" },
   { type: "approval", label: "Approval", Icon: ShieldCheck, color: "bg-amber-500", desc: "Decision gate" },
   { type: "automated", label: "Automated", Icon: Zap, color: "bg-violet-500", desc: "System sync" },
-  { type: "webhook", label: "Webhook", Icon: Globe, color: "bg-indigo-500", desc: "Live API call" },
+  { type: "webhook", label: "Webhook", Icon: Globe, color: "bg-pink-500", desc: "Live API call" },
   { type: "end", label: "End", Icon: Flag, color: "bg-rose-500", desc: "Completion" },
 ];
 
@@ -92,25 +92,25 @@ export default function Sidebar() {
   };
 
   return (
-    <div className="w-64 h-full bg-[#0F172A] border-r border-[#1E293B] flex flex-col p-4 gap-6 overflow-y-auto shadow-2xl z-10 transition-all duration-500">
+    <div className="w-64 h-full bg-white border-r border-pink-100 flex flex-col p-4 gap-6 overflow-y-auto shadow-sm z-10">
       {/* Node Palette */}
       <div>
-        <p className="text-[11px] text-slate-500 font-bold uppercase tracking-[0.15em] mb-4">Designer Nodes</p>
-        <div className="grid grid-cols-1 gap-2">
+        <p className="text-[11px] text-[#4A0E1C]/60 font-bold uppercase tracking-[0.15em] mb-4">Designer Nodes</p>
+        <div className="grid grid-cols-1 gap-2.5">
           {NODE_TYPES.map((n) => (
             <div
               key={n.type}
               draggable
               onDragStart={(e) => handleDragStart(e, n.type)}
               onClick={() => handleAddNode(n.type)}
-              className="flex items-center gap-3 p-2.5 rounded-xl border border-slate-800 bg-slate-900/40 cursor-grab hover:border-indigo-500/50 hover:bg-slate-800 transition-all group active:scale-[0.98]"
+              className="flex items-center gap-3 p-2.5 rounded-xl border border-pink-50 bg-white cursor-grab hover:border-pink-300 hover:bg-pink-50/50 transition-all group active:scale-[0.98] shadow-sm hover:shadow-md"
             >
-              <div className={`w-9 h-9 rounded-lg flex items-center justify-center shadow-lg transition-transform group-hover:scale-110 ${n.color}`}>
+              <div className={`w-9 h-9 rounded-lg flex items-center justify-center shadow-sm transition-transform group-hover:scale-110 ${n.color}`}>
                 <n.Icon size={16} className="text-white" />
               </div>
               <div className="overflow-hidden">
-                <p className="text-slate-100 text-xs font-bold leading-tight">{n.label}</p>
-                <p className="text-slate-500 text-[10px] truncate leading-tight mt-0.5">{n.desc}</p>
+                <p className="text-[#4A0E1C] text-xs font-bold leading-tight">{n.label}</p>
+                <p className="text-pink-600/40 text-[10px] truncate leading-tight mt-0.5">{n.desc}</p>
               </div>
             </div>
           ))}
@@ -119,22 +119,22 @@ export default function Sidebar() {
 
       {/* Templates */}
       <div>
-        <p className="text-[11px] text-slate-500 font-bold uppercase tracking-[0.15em] mb-4">Presets</p>
-        <div className="flex flex-col gap-2">
+        <p className="text-[11px] text-[#4A0E1C]/60 font-bold uppercase tracking-[0.15em] mb-4">Presets</p>
+        <div className="flex flex-col gap-2.5">
           {WORKFLOW_TEMPLATES.map((tpl, i) => {
             const TplIcon = TEMPLATE_ICONS[tpl.icon] || Play;
             return (
               <button
                 key={tpl.name}
                 onClick={() => handleLoadTemplate(i)}
-                className="flex items-center gap-3 p-3 rounded-xl border border-slate-800 bg-slate-900/40 hover:border-indigo-500/50 hover:bg-slate-800 transition-all text-left w-full group active:scale-[0.98]"
+                className="flex items-center gap-3 p-3 rounded-xl border border-pink-50 bg-white hover:border-pink-300 hover:bg-pink-50/50 transition-all text-left w-full group active:scale-[0.98] shadow-sm hover:shadow-md"
               >
-                <div className="w-8 h-8 rounded-lg flex items-center justify-center bg-indigo-500/10 transition-transform group-hover:translate-x-0.5">
-                  <TplIcon size={15} className="text-indigo-400" />
+                <div className="w-8 h-8 rounded-lg flex items-center justify-center bg-pink-50 transition-transform group-hover:translate-x-0.5">
+                  <TplIcon size={15} className="text-[#FF4D6D]" />
                 </div>
                 <div className="overflow-hidden">
-                  <p className="text-slate-100 text-xs font-bold truncate leading-tight">{tpl.name}</p>
-                  <p className="text-slate-500 text-[10px] truncate mt-0.5">{tpl.description}</p>
+                  <p className="text-[#4A0E1C] text-xs font-bold truncate leading-tight">{tpl.name}</p>
+                  <p className="text-pink-600/40 text-[10px] truncate mt-0.5">{tpl.description}</p>
                 </div>
               </button>
             );
@@ -143,56 +143,56 @@ export default function Sidebar() {
       </div>
 
       {/* Actions */}
-      <div className="mt-auto space-y-2 border-t border-slate-800 pt-6">
+      <div className="mt-auto space-y-2.5 border-t border-pink-100 pt-6">
         <button
           onClick={handleAutoLayout}
-          className="w-full flex items-center justify-center gap-2 text-xs py-3 px-4 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-50 font-bold transition-all border border-slate-700 active:scale-95"
+          className="w-full flex items-center justify-center gap-2 text-xs py-3 px-4 rounded-xl bg-white hover:bg-pink-50 text-[#4A0E1C] font-bold transition-all border border-pink-200 active:scale-95 shadow-sm"
         >
-          <Layout size={14} /> Refine Layout
+          <Layout size={14} className="text-pink-400" /> Refine Layout
         </button>
         
-        <div className="grid grid-cols-2 gap-2">
+        <div className="grid grid-cols-2 gap-2.5">
           <button
             onClick={handleExport}
-            className="flex flex-col items-center justify-center gap-1.5 p-3 rounded-xl bg-slate-900/50 border border-slate-800 hover:border-slate-700 hover:bg-slate-800 transition-all active:scale-95 group"
+            className="flex flex-col items-center justify-center gap-1.5 p-3 rounded-xl bg-white border border-pink-100 hover:border-pink-300 hover:bg-pink-50 transition-all active:scale-95 group shadow-sm"
             title="Export Workflow"
           >
-            <Download size={16} className="text-slate-400 group-hover:text-amber-400 transition-colors" />
-            <span className="text-[10px] font-bold text-slate-400 group-hover:text-slate-200">Export</span>
+            <Download size={16} className="text-pink-400 group-hover:text-pink-600 transition-colors" />
+            <span className="text-[10px] font-bold text-pink-600/50 group-hover:text-pink-600">Export</span>
           </button>
           
-          <label className="flex flex-col items-center justify-center gap-1.5 p-3 rounded-xl bg-slate-900/50 border border-slate-800 hover:border-slate-700 hover:bg-slate-800 transition-all cursor-pointer active:scale-95 group shadow-sm">
-            <Upload size={16} className="text-slate-400 group-hover:text-emerald-400 transition-colors" />
-            <span className="text-[10px] font-bold text-slate-400 group-hover:text-slate-200">Import</span>
+          <label className="flex flex-col items-center justify-center gap-1.5 p-3 rounded-xl bg-white border border-pink-100 hover:border-pink-300 hover:bg-pink-50 transition-all cursor-pointer active:scale-95 group shadow-sm">
+            <Upload size={16} className="text-pink-400 group-hover:text-pink-600 transition-colors" />
+            <span className="text-[10px] font-bold text-pink-600/50 group-hover:text-pink-600">Import</span>
             <input type="file" accept=".json" onChange={handleImport} className="hidden" />
           </label>
         </div>
 
         <button
           onClick={clearWorkflow}
-          className="w-full flex items-center justify-center gap-2 text-[11px] py-3 px-4 rounded-xl bg-rose-500/5 hover:bg-rose-500/10 text-rose-400 font-bold transition-all border border-rose-500/20 active:scale-95 tracking-wide"
+          className="w-full flex items-center justify-center gap-2 text-[11px] py-3 px-4 rounded-xl bg-rose-50 hover:bg-rose-100 text-[#FF4D6D] font-bold transition-all border border-rose-200 active:scale-95 tracking-wide shadow-sm"
         >
-          <Trash2 size={13} /> Reset Canvas
+          <Trash2 size={13} /> Reset Engine
         </button>
       </div>
 
       {/* Keyboard shortcuts */}
-      <div className="border-t border-slate-800 pt-6">
+      <div className="border-t border-pink-100 pt-6">
         <div className="flex items-center justify-between mb-3 px-1">
-          <p className="text-[10px] text-slate-600 font-bold uppercase tracking-widest">Engine Status</p>
+          <p className="text-[10px] text-[#4A0E1C]/40 font-bold uppercase tracking-widest">System Status</p>
           <div className="flex items-center gap-1.5">
-             <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
-             <span className="text-[10px] text-slate-400 font-bold font-mono uppercase tracking-tighter">Ready</span>
+             <div className="w-1.5 h-1.5 rounded-full bg-[#FF4D6D] animate-pulse" />
+             <span className="text-[10px] text-[#4A0E1C]/60 font-bold font-mono tracking-tighter">Standby</span>
           </div>
         </div>
-        <div className="space-y-1.5 bg-black/20 p-3 rounded-xl border border-slate-800">
-          <div className="flex justify-between items-center text-[10px] text-slate-500">
-            <span>Undo Task</span>
-            <kbd className="bg-slate-800 px-1.5 py-0.5 rounded text-slate-300 font-mono shadow-sm border border-slate-700 uppercase">Ctrl+Z</kbd>
+        <div className="space-y-1.5 bg-pink-50/50 p-3 rounded-xl border border-pink-100">
+          <div className="flex justify-between items-center text-[10px] text-pink-600/60 uppercase font-bold tracking-tight">
+            <span>Undo</span>
+            <kbd className="bg-white px-1.5 py-0.5 rounded text-pink-600/80 font-mono shadow-sm border border-pink-100">Ctrl+Z</kbd>
           </div>
-          <div className="flex justify-between items-center text-[10px] text-slate-500">
-            <span>Redo Task</span>
-            <kbd className="bg-slate-800 px-1.5 py-0.5 rounded text-slate-300 font-mono shadow-sm border border-slate-700 uppercase">Ctrl+Y</kbd>
+          <div className="flex justify-between items-center text-[10px] text-pink-600/60 uppercase font-bold tracking-tight">
+            <span>Redo</span>
+            <kbd className="bg-white px-1.5 py-0.5 rounded text-pink-600/80 font-mono shadow-sm border border-pink-100">Ctrl+Y</kbd>
           </div>
         </div>
       </div>

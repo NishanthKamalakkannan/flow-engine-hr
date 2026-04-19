@@ -8,7 +8,7 @@ export default function WebhookForm({ node }: { node: any }) {
   const d = node.data;
 
   return (
-    <div>
+    <div className="flex flex-col gap-4">
       <Field label="Node Title">
         <Input 
           value={d.title} 
@@ -23,8 +23,8 @@ export default function WebhookForm({ node }: { node: any }) {
           onChange={(e) => updateNodeData(node.id, { url: e.target.value })} 
           placeholder="https://httpbin.org/post" 
         />
-        <p className="text-[10px] text-gray-500 mt-1">
-          ? Note: URL must support CORS (e.g. Test with httpbin.org)
+        <p className="text-[10px] text-pink-600/40 mt-1 font-bold uppercase tracking-tight">
+          CORS support required (e.g. httpbin.org)
         </p>
       </Field>
 
@@ -32,7 +32,7 @@ export default function WebhookForm({ node }: { node: any }) {
         <select
           value={d.method || "POST"}
           onChange={(e) => updateNodeData(node.id, { method: e.target.value })}
-          className="w-full bg-[#1A1A2E] border border-[#0F3460] rounded-lg px-3 py-2 text-white text-sm focus:outline-none focus:border-orange-500 transition-all font-semibold"
+          className="w-full bg-white border border-pink-100 rounded-xl px-4 py-2.5 text-[#4A0E1C] text-sm font-medium focus:outline-none focus:border-[#FF4D6D] focus:ring-4 focus:ring-pink-500/5 transition-all shadow-sm"
         >
           <option value="GET">GET</option>
           <option value="POST">POST</option>
@@ -48,7 +48,7 @@ export default function WebhookForm({ node }: { node: any }) {
             value={d.payload}
             onChange={(e) => updateNodeData(node.id, { payload: e.target.value })}
             placeholder='{ "key": "value" }'
-            rows={4}
+            className="min-h-[120px]"
           />
         </Field>
       )}

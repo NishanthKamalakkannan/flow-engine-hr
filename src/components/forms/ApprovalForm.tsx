@@ -17,7 +17,7 @@ export default function ApprovalForm({ node }: { node: any }) {
         <select
           value={d.approverRole}
           onChange={e => updateNodeData(node.id, { approverRole: e.target.value })}
-          className="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-2.5 text-slate-100 text-sm focus:outline-none focus:border-indigo-500 focus:ring-4 focus:ring-indigo-500/10 transition-all font-medium"
+          className="w-full bg-white border border-pink-100 rounded-xl px-4 py-2.5 text-[#4A0E1C] text-sm font-medium focus:outline-none focus:border-[#FF4D6D] focus:ring-4 focus:ring-pink-500/5 transition-all shadow-sm"
         >
           {ROLES.map(r => <option key={r} value={r}>{r}</option>)}
         </select>

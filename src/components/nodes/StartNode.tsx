@@ -1,10 +1,20 @@
 import { Play } from "lucide-react";
-import { useWorkflowStore } from "../../store/workflowStore";
 import BaseNode from "./BaseNode";
 
-export default function StartNode({ id, selected, data }: any) {
-  const validationErrors = useWorkflowStore((s: any) => s.validationErrors);
+export default function StartNode({ id, data }: any) {
   return (
-    <BaseNode nodeId={id} label={data.title || "Start"} subtitle="Entry Point" icon={<Play size={14} />} color="bg-green-600" selected={!!selected} hasTarget={false} validationErrors={validationErrors} />
+    <BaseNode 
+      id={id} 
+      data={data}
+      title={data.title || "Workflow Entry"} 
+      type="Start Node"
+      icon={<Play size={14} className="ml-0.5 fill-current" />} 
+      colorClass="bg-emerald-500"
+    >
+      <div className="flex items-center gap-2 px-1">
+         <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse shadow-sm shadow-emerald-500/50" />
+         <p className="text-emerald-600 font-black text-[9px] uppercase tracking-widest">Entry Point Active</p>
+      </div>
+    </BaseNode>
   );
 }

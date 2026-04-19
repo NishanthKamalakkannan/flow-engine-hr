@@ -18,31 +18,32 @@
 
 body {
   margin: 0;
-  background-color: #030712; /* Slate-950 */
-  color: #F8FAFC; /* Slate-50 */
+  background-color: #FFF5F7; /* Ultra-light Rose White */
+  color: #4A0E1C; /* Deep Burgundy for professional contrast */
   font-family: 'Inter', system-ui, -apple-system, sans-serif;
   -webkit-font-smoothing: antialiased;
 }
 
-/* React Flow customizations */
+/* React Flow customizations - Light Mode */
 .react-flow__handle {
   transition: all 0.2s ease;
-  box-shadow: 0 0 8px rgba(99, 102, 241, 0.3); /* Indigo shadow */
+  box-shadow: 0 0 8px rgba(255, 77, 109, 0.2); /* Soft Rose shadow */
 }
 
 .react-flow__handle:hover {
-  box-shadow: 0 0 12px rgba(99, 102, 241, 0.6);
+  box-shadow: 0 0 12px rgba(255, 77, 109, 0.5);
 }
 
 .react-flow__edge-path {
   transition: stroke-width 0.3s ease;
+  stroke: #FFCCD5; /* Soft pink edges */
 }
 
 .react-flow__background {
-  background-color: #030712;
+  background-color: #FFF5F7;
 }
 
-/* Scrollbar styling for professional feel */
+/* Scrollbar styling - Light Rose theme */
 ::-webkit-scrollbar {
   width: 6px;
   height: 6px;
@@ -51,9 +52,9 @@ body {
   background: transparent;
 }
 ::-webkit-scrollbar-thumb {
-  background: #1E293B;
+  background: #FFE4E9;
   border-radius: 10px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #334155;
+  background: #FFB3C1;
 }

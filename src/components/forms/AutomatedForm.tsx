@@ -17,12 +17,12 @@ export default function AutomatedForm({ node }: { node: any }) {
       </Field>
       <Field label="Action">
         {loading ? (
-          <p className="text-gray-500 text-xs py-2">Loading actions...</p>
+          <p className="text-pink-300 text-[10px] py-2 animate-pulse font-bold uppercase tracking-widest">Fetching Registry...</p>
         ) : (
           <select
             value={d.actionId}
             onChange={(e) => updateNodeData(node.id, { actionId: e.target.value, actionParams: {} })}
-            className="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-2.5 text-slate-100 text-sm focus:outline-none focus:border-indigo-500 focus:ring-4 focus:ring-indigo-500/10 transition-all font-medium"
+            className="w-full bg-white border border-pink-100 rounded-xl px-4 py-2.5 text-[#4A0E1C] text-sm font-medium focus:outline-none focus:border-[#FF4D6D] focus:ring-4 focus:ring-pink-500/5 transition-all shadow-sm"
           >
             <option value="">Select an action...</option>
             {automations.map((a) => (
@@ -33,10 +33,10 @@ export default function AutomatedForm({ node }: { node: any }) {
       </Field>
       {selectedAction && (
         <Field label="Action Parameters">
-          <div className="flex flex-col gap-2">
+          <div className="flex flex-col gap-3">
             {selectedAction.params.map((param: string) => (
-              <div key={param}>
-                <p className="text-xs text-gray-500 mb-1">{param}</p>
+              <div key={param} className="space-y-1">
+                <p className="text-[10px] text-pink-600/40 font-bold uppercase tracking-widest px-1">{param}</p>
                 <Input
                   placeholder={param}
                   value={d.actionParams?.[param] || ""}

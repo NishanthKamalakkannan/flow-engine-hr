@@ -20,7 +20,7 @@ export default function App() {
   return (
     <div className="flex h-screen w-screen bg-[#080C14] text-[#F9FAFB] overflow-hidden font-sans selection:bg-purple-500/30">
       {/* Header bar - NASA Mission Control Style */}
-      <div className="absolute top-0 left-0 right-0 h-14 bg-[#0D1420]/80 backdrop-blur-xl border-b border-[#1F2937] flex items-center px-6 z-20 gap-4 shadow-2xl">
+      <div className="absolute top-0 left-0 right-0 h-14 bg-[#0D1420]/80 backdrop-blur-xl border-b border-[#1F2937] flex items-center px-6 z-30 gap-4 shadow-2xl">
         <div className="flex items-center gap-3">
           <div className="w-9 h-9 bg-gradient-to-br from-[#7C3AED] to-[#A855F7] rounded-xl flex items-center justify-center shadow-lg shadow-purple-900/40 transition-transform hover:scale-110 active:scale-95 border border-purple-400/20">
             <Cpu size={20} className="text-white drop-shadow-[0_0_8px_rgba(255,255,255,0.8)]" />
@@ -64,17 +64,21 @@ export default function App() {
         </div>
       </div>
 
-      {/* Main content area */}
-      <div className="flex w-full h-full pt-14 relative">
+      {/* Main content area - Push Layout Enabled */}
+      <div className="flex w-full h-full pt-14 relative overflow-hidden">
         <Sidebar />
-        <div className="flex-1 h-full z-0" onMouseUp={handleCanvasClick}>
+        
+        {/* Canvas - Flexible and Responsive to Push */}
+        <div className="flex-1 h-full min-w-0 z-0 bg-[#080C14]" onMouseUp={handleCanvasClick}>
           <Canvas />
         </div>
-        {!showSandbox && selectedNodeId && <NodeEditPanel />}
+        
+        {/* Dynamic Context Panels - These now 'Push' the canvas instead of overlaying it */}
+        <div className="flex flex-shrink-0">
+           {!showSandbox && selectedNodeId && <NodeEditPanel />}
+           {showSandbox && <SandboxPanel onClose={() => setShowSandbox(false)} />}
+        </div>
       </div>
-
-      {/* Trace Engine Drawer */}
-      {showSandbox && <SandboxPanel onClose={() => setShowSandbox(false)} />}
     </div>
   );
 }

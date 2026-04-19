@@ -62,8 +62,8 @@ export default function SandboxPanel({ onClose }: { onClose: () => void }) {
   };
 
   return (
-    <div className="fixed top-14 bottom-0 right-0 w-[440px] bg-[#0D1420] border-l border-[#1F2937] z-50 flex flex-col shadow-[-20px_0_60px_rgba(0,0,0,0.9)]">
-
+    <div className="w-[400px] h-full bg-[#0D1420] border-l border-[#1F2937] flex flex-col shadow-[-20px_0_60px_rgba(0,0,0,0.9)] animate-in slide-in-from-right duration-500 overflow-hidden flex-shrink-0">
+      
       <div className="flex items-center justify-between px-6 py-6 border-b border-[#1F2937] bg-[#080C14]/50">
         <div className="flex items-center gap-4">
           <div className="p-2.5 bg-[#111827] rounded-xl border border-[#1F2937] shadow-lg">
@@ -93,8 +93,7 @@ export default function SandboxPanel({ onClose }: { onClose: () => void }) {
         ))}
       </div>
 
-      <div className="flex-1 overflow-y-auto px-6 py-8 flex flex-col gap-6 bg-[#0D1420]">
-
+      <div className="flex-1 overflow-y-auto px-6 py-8 flex flex-col gap-6 bg-[#0D1420] custom-scrollbar">
         {validationMessages.length > 0 && (
           <div className="bg-red-950/20 border border-red-900/40 rounded-2xl p-5">
             <div className="flex items-center gap-3 mb-4">
